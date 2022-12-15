@@ -4,8 +4,27 @@
     <title>Spring Security Example</title>
 </head>
 <body>
-<h1>User, welcome spring boot security page!</h1>
 
+<table>
+    <tr>
+        <th>name</th>
+        <th>age</th>
+        <th>email</th>
+        <th>role</th>
+    </tr>
+
+    <tr th:each="msg :${messages}">
+
+        <td th:text="${msg.name}"></td>
+        <td th:text="${msg.age}"></td>
+        <td th:text="${msg.email}"></td>
+        <td th:text="${msg.roles}"></td>
+        <br>
+    </tr>
+</table>
+
+<input type="button" value="logout"
+       onclick="window.location.href = '/logout'"/>
 
 </body>
 </html>
