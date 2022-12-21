@@ -10,6 +10,8 @@ public interface UserServise {
 
     void addUser(User user);
 
+    void updateUser(User user);
+
     User findUserById(Long id);
 
     void deleteUserById(Long id);
