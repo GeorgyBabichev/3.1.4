@@ -44,10 +44,23 @@ public class UserServiceImp implements UserService, UserDetailsService {
 
     }
 
-    @Override
     @Transactional
     public void updateUser(User user) {
-        userRepository.save(user);
+        userRepository
+                .findById(user.getId())
+                .ifPresent(user1 -> {
+                    user1.setName(user.getName());
+                    user1.setLastName(user.getLastName());
+                    user1.setAge(user.getAge());
+                    user1.setLogin(user.getLogin());
+                    user1.setRoles(user.getRoles());
+                    if (user.getPassword().equals(user1.getPassword())) {
+                        user1.setPassword(user.getPassword());
+                    } else {
+                        user1.setPassword(passwordEncoder.encode(user.getPassword()));
+                    }
+                    userRepository.save(user1);
+                });
     }
 
     @Override
