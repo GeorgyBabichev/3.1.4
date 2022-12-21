@@ -7,18 +7,18 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import ru.kata.spring.boot_security.demo.service.UserService;
 
 @Configuration
 
 public class WebSecurityConfig {
     private final SuccessHandler successHandler;
-    private final UserService userDetailsService;
+    private final UserDetailsService userDetailsService;
 
-    public WebSecurityConfig(SuccessHandler successHandler, @Lazy UserService userDetailsService) {
+    public WebSecurityConfig(SuccessHandler successHandler, @Lazy UserDetailsService userDetailsService) {
         this.successHandler = successHandler;
         this.userDetailsService = userDetailsService;
     }
@@ -52,7 +52,7 @@ public class WebSecurityConfig {
 
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService);
+        authProvider.setUserDetailsService( userDetailsService);
         authProvider.setPasswordEncoder(bCryptPasswordEncoder());
         return authProvider;
     }
