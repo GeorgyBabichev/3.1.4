@@ -4,7 +4,7 @@ import ru.kata.spring.boot_security.demo.model.User;
 
 import java.util.List;
 
-public interface UserServise {
+public interface UserService {
 
     List<User> getAllUser();
 

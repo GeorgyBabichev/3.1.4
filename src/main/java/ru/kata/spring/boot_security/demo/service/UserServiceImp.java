@@ -16,7 +16,7 @@ import java.util.Optional;
 
 
 @Service
-public class UserServiseImp implements UserServise, UserDetailsService {
+public class UserServiceImp implements UserService, UserDetailsService {
 
 
     private final UserRepository userRepository;
@@ -25,7 +25,7 @@ public class UserServiseImp implements UserServise, UserDetailsService {
 
 
     @Autowired
-    public UserServiseImp(UserRepository userRepository, @Lazy PasswordEncoder passwordEncoder) {
+    public UserServiceImp(UserRepository userRepository, @Lazy PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
